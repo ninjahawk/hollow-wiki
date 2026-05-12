@@ -86,7 +86,7 @@ Memory and identity from a higher version may not be readable by a lower version
 
 ## Reporting regressions
 
-If an update made things worse, [open an issue](https://github.com/ninjahawk/hollow-agentOS/issues/new) with:
+If an update made things worse, [report it](https://github.com/ninjahawk/hollow-agentOS/issues/new) with:
 
 - Old version, new version
 - What changed (specific behavior)

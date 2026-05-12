@@ -24,7 +24,7 @@ aux_links:
     - "https://github.com/ninjahawk/hollow-agentOS"
   "Releases":
     - "https://github.com/ninjahawk/hollow-agentOS/releases"
-  "Open an issue":
+  "Report a bug":
     - "https://github.com/ninjahawk/hollow-agentOS/issues/new"
 
 aux_links_new_tab: true

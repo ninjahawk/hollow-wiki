@@ -13,6 +13,7 @@ Three agents running on a local model, picking their own goals, writing their ow
 {: .fs-6 .fw-300 }
 
 [Get started]({{ '/Setup.html' | relative_url }}){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[Report a bug](https://github.com/ninjahawk/hollow-agentOS/issues/new){: .btn .fs-5 .mb-4 .mb-md-0 .mr-2 }
 [View on GitHub](https://github.com/ninjahawk/hollow-agentOS){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---
@@ -45,13 +46,13 @@ It's an experiment in emergent behavior under environmental pressure, not a codi
 
 ---
 
-## Reporting bugs
+## Report a bug
 
-[Open an issue](https://github.com/ninjahawk/hollow-agentOS/issues/new) with:
+Something broken? [**Report it here**](https://github.com/ninjahawk/hollow-agentOS/issues/new){: .btn .btn-purple } — please include:
 
 - Your OS and version
 - Whether you have a GPU and what kind
 - The exact command/action that failed
 - The full output (please don't truncate)
 
-Screenshots help for setup-wizard failures.
+Screenshots help for setup-wizard failures. You don't need to know what's "wrong" — describe what you saw and what you expected.

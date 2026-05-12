@@ -40,7 +40,7 @@ The setup wizard auto-detects this and falls back to CPU-only mode, but you'll l
 
 **Cause**: Older versions (pre-5.7.x) had a regex bug in the no-GPU fallback that produced invalid YAML. Fixed by switching to a line-based pass.
 
-**Fix**: Update to v5.7.32 or later. If you're already on latest and still seeing yaml errors, [open an issue](https://github.com/ninjahawk/hollow-agentOS/issues/new) with the full error.
+**Fix**: Update to v5.7.32 or later. If you're already on latest and still seeing yaml errors, [report it](https://github.com/ninjahawk/hollow-agentOS/issues/new) with the full error.
 
 ### Setup hangs on "Pulling images"
 
@@ -132,7 +132,7 @@ The operator panel has a **Nuke** button that does this for you.
 
 ## Still stuck?
 
-[Open an issue](https://github.com/ninjahawk/hollow-agentOS/issues/new) with:
+[Report it here](https://github.com/ninjahawk/hollow-agentOS/issues/new){: .btn .btn-purple } — please include:
 
 - Your OS, GPU model (or "none"), Docker version, Python version
 - What you ran
