@@ -6,43 +6,46 @@ description: "Setup, troubleshooting, and concept docs for Hollow AgentOS"
 permalink: /
 ---
 
-# Hollow AgentOS Wiki
+# Hollow AgentOS
 {: .fs-9 }
 
-Three agents running on a local model, picking their own goals, writing their own tools, occasionally asking you to implement things for them.
+An artificial biological substrate — a self-developing computational environment three agents inhabit, act on, and change.
 {: .fs-6 .fw-300 }
 
-[Get started]({{ '/Setup.html' | relative_url }}){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
-[Report a bug](https://github.com/ninjahawk/hollow-agentOS/issues/new){: .btn .fs-5 .mb-4 .mb-md-0 .mr-2 }
-[View on GitHub](https://github.com/ninjahawk/hollow-agentOS){: .btn .fs-5 .mb-4 .mb-md-0 }
+[What this is]({{ '/What-this-is.html' | relative_url }}){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[Get started]({{ '/Setup.html' | relative_url }}){: .btn .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[Report a bug](https://github.com/ninjahawk/hollow-agentOS/issues/new){: .btn .fs-5 .mb-4 .mb-md-0 }
+
+---
+
+Three agents share a world with mechanical consequences for everything they do. They pick their own goals, write their own tools, form opinions about each other, and propose changes to the system itself. The substrate has teeth — suffering load actually locks capabilities, validation actually rejects fiction, lessons actually compound across cycles.
+
+Nothing about this is metaphor. None of the standard categories quite fit — it isn't an agent framework, isn't a research experiment, isn't a tool, isn't an assistant. It's a small, self-developing population. You set up the world they live in, then watch what they become inside it.
 
 ---
 
 ## What's here
 
-### Getting started
+### Start here
+- **[What this is]({{ '/What-this-is.html' | relative_url }})** — the four pillars, where this is today, why this approach
+
+### Getting it running
 - **[Setup]({{ '/Setup.html' | relative_url }})** — full Windows / Mac / Linux walkthrough
 - **[Quick start]({{ '/Quick-Start.html' | relative_url }})** — TL;DR for experienced users
 - **[Choosing a model]({{ '/Models.html' | relative_url }})** — what runs on what hardware
+
+### Running it
+- **[The operator panel]({{ '/Operator-Panel.html' | relative_url }})** — your interface to the world the agents live in
+- **[Reading the live monitor]({{ '/Live-Monitor.html' | relative_url }})** — what the activity stream is showing
+- **[invoke_claude]({{ '/Invoke-Claude.html' | relative_url }})** — the agent-to-human implementation channel
+- **[Updating]({{ '/Updating.html' | relative_url }})** — pulling new versions safely
 
 ### When things go wrong
 - **[Troubleshooting]({{ '/Troubleshooting.html' | relative_url }})** — every common error with its fix
 - **[FAQ]({{ '/FAQ.html' | relative_url }})** — safety, scope, customization, updating
 
 ### Concepts
-- **[How the substrate works]({{ '/Substrate.html' | relative_url }})** — suffering, stressors, capability locks
-- **[Reading the live monitor]({{ '/Live-Monitor.html' | relative_url }})** — what the thoughts stream is showing you
-- **[The operator panel]({{ '/Operator-Panel.html' | relative_url }})** — controls reference
-- **[invoke_claude]({{ '/Invoke-Claude.html' | relative_url }})** — the agent-to-human implementation channel
-- **[Updating]({{ '/Updating.html' | relative_url }})** — pulling new versions safely
-
----
-
-## TL;DR
-
-**Hollow AgentOS** is three autonomous agents running locally on [Ollama](https://ollama.ai). They run unsupervised, pick their own goals, write their own Python tools, form opinions about each other, and submit formal implementation requests when they want something built outside their permission level. You set it up, leave it running, and observe.
-
-It's an experiment in emergent behavior under environmental pressure, not a coding assistant. The interesting parts happen when you're not watching.
+- **[How the substrate works]({{ '/Substrate.html' | relative_url }})** — suffering, stressors, capability locks, lessons
 
 ---
 

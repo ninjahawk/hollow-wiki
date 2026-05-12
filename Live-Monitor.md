@@ -1,6 +1,6 @@
 ---
 title: Reading the live monitor
-nav_order: 6
+nav_order: 7
 ---
 
 # Reading the live monitor

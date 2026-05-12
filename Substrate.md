@@ -1,6 +1,6 @@
 ---
 title: How the substrate works
-nav_order: 9
+nav_order: 10
 ---
 
 # How the substrate works
