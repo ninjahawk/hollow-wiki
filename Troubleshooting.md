@@ -46,7 +46,7 @@ The setup wizard auto-detects this and falls back to CPU-only mode, but you'll l
 
 **Cause**: Slow internet or GHCR is briefly down.
 
-**Fix**: Wait it out (the images total ~1 GB), or `docker compose pull` manually to retry. If GHCR is down, you can build locally — the compose file falls back to `build:` blocks.
+**Fix**: Wait it out (the images total ~1 GB), or `docker compose pull` manually to retry. If GHCR is down, you can build locally, the compose file falls back to `build:` blocks.
 
 ### "Permission denied" on Linux
 
@@ -75,11 +75,11 @@ newgrp docker  # or log out and back in
 
 ### "Cycle worker timeout" errors
 
-**Cause**: A goal cycle exceeded the 1500s budget — usually means Ollama is slow or the agent picked an over-ambitious goal.
+**Cause**: A goal cycle exceeded the 1500s budget, usually means Ollama is slow or the agent picked an over-ambitious goal.
 
 **Behavior**: Not fatal. The next cycle continues with the timed-out agent in "cooling" state for a few cycles, then it rejoins.
 
-**If it's happening every cycle**: Check Ollama health (`/api/ps`). If models are repeatedly being unloaded, you don't have enough VRAM — switch to a smaller model in `config.json`.
+**If it's happening every cycle**: Check Ollama health (`/api/ps`). If models are repeatedly being unloaded, you don't have enough VRAM, switch to a smaller model in `config.json`.
 
 ### "Validation hangs" / "VALIDATE_START with no END"
 
@@ -89,7 +89,7 @@ newgrp docker  # or log out and back in
 
 ### "Agents keep abandoning the same goal"
 
-**Cause**: Either the goal is genuinely impossible (e.g. targeting a file path that doesn't exist) or the validation semantic check is too strict for the artifact produced.
+**Cause**: Either the goal is genuinely impossible (e.g, targeting a file path that doesn't exist) or the validation semantic check is too strict for the artifact produced.
 
 **What the substrate does**: After 5 validation failures the goal is permanently abandoned and any partial artifacts are deleted. The agent picks a new goal next cycle.
 
@@ -124,7 +124,7 @@ rm -rf memory/audit.log memory/goals/* memory/identity/*  # nukes agent memory
 python3 hollow.py        # fresh start
 ```
 
-This is destructive — you lose all agent history. But sometimes a baseline gets contaminated by a bad early run and the only way back is a reset.
+This is destructive, you lose all agent history. But sometimes a baseline gets contaminated by a bad early run and the only way back is a reset.
 
 The operator panel has a **Nuke** button that does this for you.
 
@@ -132,9 +132,9 @@ The operator panel has a **Nuke** button that does this for you.
 
 ## Still stuck?
 
-[Report it here](https://github.com/ninjahawk/hollow-agentOS/issues/new){: .btn .btn-purple } — please include:
+[Report it here](https://github.com/ninjahawk/hollow-agentOS/issues/new){: .btn .btn-purple }, please include:
 
 - Your OS, GPU model (or "none"), Docker version, Python version
 - What you ran
-- The full error (please — `2>&1 | tee error.log` and paste the lot)
+- The full error (please. `2>&1 | tee error.log` and paste the lot)
 - A screenshot for GUI errors

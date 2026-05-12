@@ -21,8 +21,8 @@ That's it for patch and minor version bumps (e.g. `5.7.x → 5.7.32`, `5.7 → 5
 
 ## What survives an update
 
-- **Agent identity** (`memory/identity/<agent>/`) — names, traits, opinions, narrative
-- **Agent memory** (`memory/agents/`, semantic index) — everything they've learned
+- **Agent identity** (`memory/identity/<agent>/`), names, traits, opinions, narrative
+- **Agent memory** (`memory/agents/`, semantic index), everything they've learned
 - **Goal history** (`memory/goals/<agent>/registry.jsonl`)
 - **Lessons** (`memory/identity/<agent>/lessons.json`)
 - **Workspace files** (`workspace/<agent>/`)
@@ -31,8 +31,8 @@ That's it for patch and minor version bumps (e.g. `5.7.x → 5.7.32`, `5.7 → 5
 
 ## What gets reset
 
-- **Container state** — anything in-memory dies on `docker compose down`. Agents re-cold-start their daemon loops.
-- **Active goals in flight** — if you stop mid-cycle, that cycle's work is rolled back via txn rollback. Agents pick up from the last persisted state on restart.
+- **Container state**: anything in-memory dies on `docker compose down`. Agents re-cold-start their daemon loops.
+- **Active goals in flight**: if you stop mid-cycle, that cycle's work is rolled back via txn rollback. Agents pick up from the last persisted state on restart.
 
 ## When to nuke
 
@@ -44,8 +44,8 @@ A "nuke" wipes agent state and starts fresh. Use it when:
 
 How to nuke:
 
-- **Via panel** — click the **Nuke** button. Confirms before acting.
-- **Via shell** —
+- **Via panel**: click the **Nuke** button. Confirms before acting.
+- **Via shell** , 
 
   ```bash
   python3 hollow.py stop
@@ -69,10 +69,10 @@ First check the release notes. Most changes are explicitly called out.
 
 Common change-after-update patterns:
 
-- **"My agents complete more goals now"** — that's intentional. v5.7.32 fixed the completion math; before that, `progress >= 1.0` was mathematically unreachable in many configurations.
-- **"My agents pick different fallback goals"** — also intentional. v5.7.32 fixed the deterministic fallback that produced the same text every cycle for the same stressor.
-- **"Validation now rejects things it used to accept"** — placeholder gate widened in v5.7.32. Files with `[From LLM Output]`, `[Hypothesis]`, etc. patterns are caught now.
-- **"Cycles take longer"** — probably the cycle worker timeout bumped from 600s → 1500s to accommodate qwen3.6's real cycle lengths. Each cycle has more headroom, completes more often.
+- **"My agents complete more goals now"**: that's intentional, v5.7.32 fixed the completion math; before that, `progress >= 1.0` was mathematically unreachable in many configurations.
+- **"My agents pick different fallback goals"**: also intentional, v5.7.32 fixed the deterministic fallback that produced the same text every cycle for the same stressor.
+- **"Validation now rejects things it used to accept"**: placeholder gate widened in v5.7.32. Files with `[From LLM Output]`, `[Hypothesis]`, etc, patterns are caught now.
+- **"Cycles take longer"**: probably the cycle worker timeout bumped from 600s → 1500s to accommodate qwen3.6's real cycle lengths. Each cycle has more headroom, completes more often.
 
 ## Downgrading
 
@@ -82,7 +82,7 @@ docker compose down
 docker compose up -d --build
 ```
 
-Memory and identity from a higher version may not be readable by a lower version. Check the release notes for forward/backward compat — most patch releases are bidirectional, minor and major are not.
+Memory and identity from a higher version may not be readable by a lower version. Check the release notes for forward/backward compat, most patch releases are bidirectional, minor and major are not.
 
 ## Reporting regressions
 

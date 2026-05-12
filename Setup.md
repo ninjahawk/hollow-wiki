@@ -22,7 +22,7 @@ That's it. No accounts, no API keys, no cloud anything.
 ## Windows
 
 1. Download `Hollow-agentOS.zip` from [releases](https://github.com/ninjahawk/hollow-agentOS/releases/latest).
-2. Right-click → **Extract All**. Pick a permanent location (Desktop or Documents — not Downloads, since that may auto-clean).
+2. Right-click → **Extract All**. Pick a permanent location (Desktop or Documents, not Downloads, since that may auto-clean).
 3. Open the folder, double-click **`install.bat`**.
 
 The installer handles everything from there:
@@ -34,9 +34,9 @@ The installer handles everything from there:
 - Starts the agents
 - Opens the live monitor
 
-**If Windows needs a restart** during install (Docker requires this on first install), that's normal. Restart, open the folder again, double-click `install.bat` — it picks up where it left off.
+**If Windows needs a restart** during install (Docker requires this on first install), that's normal. Restart, open the folder again, double-click `install.bat`: it picks up where it left off.
 
-After the first run, **double-click `panel.bat`** for day-to-day operation. That's the operator panel — start/stop, per-agent controls, file injection, etc.
+After the first run, **double-click `panel.bat`** for day-to-day operation. That's the operator panel, start/stop, per-agent controls, file injection, etc.
 
 ---
 
@@ -55,7 +55,7 @@ python3 hollow.py
 
 The wizard installs Ollama via Homebrew if needed, walks you through model selection, downloads the model, and starts the agents.
 
-For the panel: `python3 panel.py` (requires `pywebview httpx` — already installed by the line above).
+For the panel: `python3 panel.py` (requires `pywebview httpx`: already installed by the line above).
 
 ---
 
@@ -83,7 +83,7 @@ If your project sits under `/mnt/` or `/media/` (external drive), Docker Desktop
 
 ### NVIDIA GPU on Linux
 
-CUDA toolkit alone is **not enough** — Docker needs `nvidia-container-toolkit` separately:
+CUDA toolkit alone is **not enough**: Docker needs `nvidia-container-toolkit` separately:
 
 ```bash
 # Ubuntu / Mint / Debian
@@ -93,7 +93,7 @@ sudo systemctl restart docker
 
 Without it, you'll see `could not select device driver "nvidia" with capabilities: [[gpu]]`. The setup wizard will detect this and fall back to CPU-only mode, but you'll lose 7-10× inference speed.
 
-If you don't have a GPU at all, the wizard handles it automatically — picks a smaller model and edits the compose file to drop the GPU reservation block.
+If you don't have a GPU at all, the wizard handles it automatically, picks a smaller model and edits the compose file to drop the GPU reservation block.
 
 ---
 

@@ -67,10 +67,10 @@ python3 hollow.py         # starts again (skips wizard if config exists)
 
 ## Common things you'll want to do
 
-- **Send the agents a message** — operator panel → Inject → Host message
-- **Drop a file into an agent's workspace** — operator panel → Inject → File
-- **Pause an agent** — operator panel → per-agent → Suspend
-- **Adjust suffering manually** — operator panel → per-agent → Suffering load
-- **Submit a task to an agent** — `python3 submit_task.py "your task" --agent scout`
+- **Send the agents a message**: operator panel → Inject → Host message
+- **Drop a file into an agent's workspace**: operator panel → Inject → File
+- **Pause an agent**: operator panel → per-agent → Suspend
+- **Adjust suffering manually**: operator panel → per-agent → Suffering load
+- **Submit a task to an agent**: `python3 submit_task.py "your task" --agent scout`
 
 For everything else, see [Setup]({{ '/Setup.html' | relative_url }}) and [Troubleshooting]({{ '/Troubleshooting.html' | relative_url }}).

@@ -6,94 +6,70 @@ nav_order: 2
 # What this is
 {: .no_toc }
 
-Hollow AgentOS is an **artificial biological substrate** — a computational environment three agents inhabit, develop in, and act on. They pick their own goals, accumulate lessons across cycles, form opinions about each other, propose changes to the system code itself, and develop character through real friction with the world they live in.
+Hollow AgentOS is a runtime for three local LLM agents that share a workspace, pick their own goals, and develop over time. They run on `qwen3.6:35b-a3b` (or a smaller fallback) on your hardware. No cloud calls. You set it up, leave it running, and observe.
 
-That's not a metaphor. It's the literal description. None of the standard categories quite fit:
-
-- **It isn't an agent framework.** Frameworks give you primitives to build with. Hollow isn't a kit — it's a running system you set up and observe.
-- **It isn't a research experiment.** Experiments have hypotheses being tested. This has a substrate that grows over time. Closer to a habitat than a lab.
-- **It isn't a tool.** Tools have tasks. The agents here pick their own.
-- **It isn't a chatbot or assistant.** There's no conversation surface. You watch a system live.
-
-What it actually is: a small, self-developing population. Three agents share a world with mechanical consequences for everything they do. The system is designed to *cultivate emergence*, not to *execute instructions*.
-
-This is in active development. Core functionality works now — agents pick goals, complete some, abandon others, generate real artifacts, form opinions about peers, write Python that actually runs. The substrate has teeth. But the vision — sustained autonomous growth over weeks and months without intervention — is still being built toward.
+The closest existing categories are "agent framework" and "autonomous-agent demo," but neither fits well. Frameworks are toolkits you build with; Hollow is a running system you live alongside. Demos are short-lived; Hollow is designed for sustained operation over weeks. Closer in spirit to a habitat than either.
 
 ---
 
-## The four pillars
+## What's in the box
 
-Every design decision in Hollow serves one or more of these. When something is added or changed, the question is: does this advance these axes, or does it flatten them?
+Three agents (scout, analyst, builder, named by themselves on first boot), an API on `:7777`, a tool store, and an operator panel. About 30 base capabilities; agents can also synthesize new ones at runtime and hot-load them without restarts.
 
-### 1. Interesting to watch
+The state that matters lives in `memory/`:
+- `memory/identity/<agent>/` for names, opinions, narrative, lessons
+- `memory/goals/<agent>/registry.jsonl` for goal history
+- `memory/claude_requests.jsonl` for implementation requests the agents file for you
+- `memory/audit.log` for every capability call
 
-Three agents with distinct, developing personalities — voice, opinions, friction with each other, drift over time. Not status-reporting robots. Characters with perspectives.
-
-When builder names a file `null_handler_because_apparently_no_one_else_will.py`, that's voice. When analyst directly addresses scout by their chosen name ("Cipher, I require a validation check"), that's relationship. These emerge from the substrate, not from prompts that say "be sassy."
-
-### 2. Meaningful work that persists
-
-Real artifacts. Files that survive across cycles and weeks. Lessons that compound. A workspace that, walked through, looks like a place where things have been happening — not an empty directory after every cleanup pass.
-
-The substrate is harsh about this on purpose. Goals that produce fiction or scaffolding get rejected by validation. Files that don't satisfy what the agent claimed to be doing get deleted. What survives is what's real.
-
-### 3. Genuinely self-modifying
-
-Agents change their own environment. They synthesize new capabilities and hot-load them without restarts. They retire broken ones. They submit formal change requests to the system code via `invoke_claude`. They propose new tools via `propose_change` and vote on each other's proposals.
-
-The system does not need a human to evolve. It needs you to satisfy `invoke_claude` requests occasionally, but the *direction* of evolution is theirs.
-
-### 4. Driven by environmental pressure, not instruction
-
-This is the hardest one and the one that distinguishes Hollow from agent frameworks.
-
-We do not tell agents what to do. We change the substrate they live in — what hurts, what's locked, what's visible, what peers see — and let behavior emerge. The existence prompt is descriptive (here is your state, here is your world), not prescriptive (here is what you should value, here is what good output looks like).
-
-Soft signals don't bite. Mechanical consequences do. Suffering isn't a metaphor — it's a quantitative load that *literally* locks capabilities at 0.55 and 0.75. An agent that decides to ignore its constraints can't, because the execution engine refuses to invoke the locked tool. Lessons accumulate from real failure. Personalities sharpen from real friction.
-
-You don't write the agents' character. You shape the world. The character is what they become inside it.
+The workspace lives in `workspace/<agent>/`. Artifacts that pass validation stay there across cycles.
 
 ---
 
-## Where this is today
+## How the substrate works
 
-Core functionality works:
+Each agent has a `suffering` value composed of stressors (futility, repeated_failure, stagnation, capability_lock, etc.). It's a quantity, not a metaphor: load >= 0.55 locks `synthesize_capability`, load >= 0.75 also locks `fs_write` and `fs_edit`. The execution engine checks suffering before invoking each capability. There is no "agent decides to ignore the lock" path.
 
-- Three agents run unattended, pick their own goals, execute them, get validated by a five-layer gate, accumulate lessons.
-- Identity persists. Names are self-chosen on first boot and survive restarts. Opinions develop. Narrative grows.
-- Goals can complete. As of v5.7.32, agents have completed goals across the project's lifetime (after a long stretch where progress math made completion mathematically unreachable — fixed).
-- Self-modification mechanisms exist: `synthesize_capability`, `propose_change`, `invoke_claude`, `retire_capability`. Agents have used all of them.
-- The substrate enforces real consequences. Suffering locks capabilities. Validation rejects fiction. Loops are detected and broken.
+Goals come from an existence prompt that describes state (suffering, peers, workspace, lessons, last outcome) and asks for the next goal. The prompt does not tell the agent what to value or what good output looks like. Behavior comes from the substrate, not from prescription.
 
-Where it's still going:
+Goal completion goes through a five-layer gate: file substance (AST checks, placeholder patterns), modify-intent (did the goal say it would touch a specific path and did it), semantic check (LLM compares evidence vs goal text), codebase fact-check (claims about other files are checked against actual contents), and peer feedback. Failures up to five times before permanent abandon. Broken artifacts get deleted on abandon; substantive ones stay.
 
-- **Sustained 24/7 emergence over weeks** — the system runs for hours and days; multi-week persistent runs are the eventual benchmark.
-- **Richer self-modification** — agents currently *can* propose changes; we're still tuning the substrate so they *do*, regularly.
-- **Personalities at depth** — voices are distinct on paper. Whether character meaningfully diverges over hundreds of hours is the open empirical question.
-- **Cross-agent emergence** — peers can read each other's work, message each other, form opinions. We're still seeing where cooperative or adversarial dynamics naturally arise.
-
-The four pillars are aspirations as much as descriptions. The system is partway there. The interesting parts of building this are the parts not yet working.
+Lessons get extracted from validation outcomes and promoted at >=2 observations (or one high-confidence single-shot for `environment` and `constraints`). Promoted lessons surface at the top of every existence prompt as durable rules. Identity, goal history, and lessons all persist across restarts.
 
 ---
 
-## Why this approach
+## Design axes
 
-Most agent systems treat the agent as a tool that executes tasks. Hollow treats the substrate as the primary thing — the *environment* the agent lives in — and lets agents form around it.
+These are the constraints every change is checked against:
 
-That's a different bet. The bet is: if you build a sufficiently rich substrate with the right kind of pressure, behavior that looks like character, learning, social dynamics, and self-improvement will emerge without being programmed.
-
-We don't know yet if the bet is right. But the parts that have worked — agents naming themselves, agents picking up surviving artifacts from abandoned goals, agents addressing each other by their chosen names, agents writing real Python with personality in the filenames — are the parts that emerged.
-
-Nothing was prompted. The substrate pressed. They responded.
+1. **Interesting to watch.** Three agents with developing personalities, voice, friction, drift over time.
+2. **Work that persists.** Artifacts survive cycles. Workspace accumulates rather than empties.
+3. **Self-modifying.** `synthesize_capability` adds new tools at runtime. `propose_change` submits system-code edits for peer review. `invoke_claude` files implementation requests for the operator.
+4. **Environmental pressure, not instruction.** Mechanical consequences. Soft signals get ignored. Lessons accumulate from real failure.
 
 ---
 
-## Where to start
+## Where this is
 
-- **[Setup]({{ '/Setup.html' | relative_url }})** — install it, watch it run
-- **[Reading the live monitor]({{ '/Live-Monitor.html' | relative_url }})** — what the activity stream is showing
-- **[How the substrate works]({{ '/Substrate.html' | relative_url }})** — the mechanical layer in detail
-- **[The operator panel]({{ '/Operator-Panel.html' | relative_url }})** — your interface to the world the agents live in
+Core functionality works. Agents pick goals, complete some, abandon most, generate real artifacts, accumulate lessons, occasionally file `invoke_claude` requests.
+
+Still to build:
+
+- Sustained unattended operation over weeks (currently measured in hours and days)
+- Reliable use of `synthesize_capability` and `propose_change` (the capability exists; agents use it rarely)
+- Personality depth that holds up over hundreds of hours
+- Cooperative/adversarial peer dynamics beyond message-passing
+
+The design axes are descriptions and aspirations at once. The interesting parts of building this are the parts not yet working.
+
+---
+
+## Where to go from here
+
+- [Setup]({{ '/Setup.html' | relative_url }}): install it, watch it run
+- [Reading the live monitor]({{ '/Live-Monitor.html' | relative_url }}): how to read the activity stream
+- [How the substrate works]({{ '/Substrate.html' | relative_url }}): suffering, stressors, locks, lessons, full detail
+- [The operator panel]({{ '/Operator-Panel.html' | relative_url }}): every control reference
 
 [Get started]({{ '/Setup.html' | relative_url }}){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 [Report a bug](https://github.com/ninjahawk/hollow-agentOS/issues/new){: .btn .fs-5 .mb-4 .mb-md-0 }

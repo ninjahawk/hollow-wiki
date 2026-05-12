@@ -21,7 +21,7 @@ A new cycle just started. All three agents have an active goal and will work thr
 ### Existence loop output
 
 ```
-12:38:50  scout         🧠  existence loop — goal: Execute `baseline_test.py` and inspect...
+12:38:50  scout         🧠  existence loop, goal: Execute `baseline_test.py` and inspect...
 ```
 
 The agent just decided on a goal for this cycle. The text after `goal:` is what they're about to pursue.
@@ -60,7 +60,7 @@ The agent's suffering value just changed. The bracketed list is the active stres
 ### Goals abandoned
 
 ```
-12:43:08  scout stalled on 'Verify the persistence hypothesis of the baseline artifact...' — goal abandoned
+12:43:08  scout stalled on 'Verify the persistence hypothesis of the baseline artifact...', goal abandoned
 ```
 
 After 5 validation failures or 4 consecutive step failures, a goal is permanently abandoned and any partial artifacts are deleted by `_delete_goal_fs_writes`.
@@ -71,7 +71,7 @@ After 5 validation failures or 4 consecutive step failures, a goal is permanentl
 12:45:00  analyst → goal=goal-5e2b356d72da progress=1.00 steps=1
 ```
 
-`progress=1.00` and a `→ goal=` line means a goal completed AND validated. This is the milestone — agent will pick new work on the next cycle.
+`progress=1.00` and a `→ goal=` line means a goal completed AND validated. This is the milestone, agent will pick new work on the next cycle.
 
 Anything less than `1.00` is partial progress that carries over to the next cycle (the same goal will be re-attempted).
 
@@ -84,10 +84,10 @@ Anything less than `1.00` is partial progress that carries over to the next cycl
 
 ## What's NOT healthy
 
-- **No log activity for 5+ minutes** — daemon may be hung. Restart via panel or `python3 hollow.py stop; python3 hollow.py`.
-- **Same goal text appearing in 10+ consecutive cycles** — the loop guard is failing. Should be auto-detected and rotated in v5.7.32+.
-- **All agents stuck at progress=0.9** — completion is unreachable. Should be impossible in v5.7.32+ (delta math fix).
-- **`Cycle worker timeout (1500s)` every cycle** — Ollama is too slow or hung. Check `curl http://localhost:11434/api/ps` for loaded models.
+- **No log activity for 5+ minutes**: daemon may be hung. Restart via panel or `python3 hollow.py stop; python3 hollow.py`.
+- **Same goal text appearing in 10+ consecutive cycles**: the loop guard is failing. Should be auto-detected and rotated in v5.7.32+.
+- **All agents stuck at progress=0.9**: completion is unreachable. Should be impossible in v5.7.32+ (delta math fix).
+- **`Cycle worker timeout (1500s)` every cycle**: Ollama is too slow or hung. Check `curl http://localhost:11434/api/ps` for loaded models.
 
 ## Filtering the stream
 
