@@ -12,7 +12,7 @@ permalink: /
 Three agents running on a local model, picking their own goals, writing their own tools, occasionally asking you to implement things for them.
 {: .fs-6 .fw-300 }
 
-[Get started]({% link Setup.md %}){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[Get started]({{ '/Setup.html' | relative_url }}){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 [View on GitHub](https://github.com/ninjahawk/hollow-agentOS){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---
@@ -20,20 +20,20 @@ Three agents running on a local model, picking their own goals, writing their ow
 ## What's here
 
 ### Getting started
-- **[Setup]({% link Setup.md %})** — full Windows / Mac / Linux walkthrough
-- **[Quick start]({% link Quick-Start.md %})** — TL;DR for experienced users
-- **[Choosing a model]({% link Models.md %})** — what runs on what hardware
+- **[Setup]({{ '/Setup.html' | relative_url }})** — full Windows / Mac / Linux walkthrough
+- **[Quick start]({{ '/Quick-Start.html' | relative_url }})** — TL;DR for experienced users
+- **[Choosing a model]({{ '/Models.html' | relative_url }})** — what runs on what hardware
 
 ### When things go wrong
-- **[Troubleshooting]({% link Troubleshooting.md %})** — every common error with its fix
-- **[FAQ]({% link FAQ.md %})** — safety, scope, customization, updating
+- **[Troubleshooting]({{ '/Troubleshooting.html' | relative_url }})** — every common error with its fix
+- **[FAQ]({{ '/FAQ.html' | relative_url }})** — safety, scope, customization, updating
 
 ### Concepts
-- **[How the substrate works]({% link Substrate.md %})** — suffering, stressors, capability locks
-- **[Reading the live monitor]({% link Live-Monitor.md %})** — what the thoughts stream is showing you
-- **[The operator panel]({% link Operator-Panel.md %})** — controls reference
-- **[invoke_claude]({% link Invoke-Claude.md %})** — the agent-to-human implementation channel
-- **[Updating]({% link Updating.md %})** — pulling new versions safely
+- **[How the substrate works]({{ '/Substrate.html' | relative_url }})** — suffering, stressors, capability locks
+- **[Reading the live monitor]({{ '/Live-Monitor.html' | relative_url }})** — what the thoughts stream is showing you
+- **[The operator panel]({{ '/Operator-Panel.html' | relative_url }})** — controls reference
+- **[invoke_claude]({{ '/Invoke-Claude.html' | relative_url }})** — the agent-to-human implementation channel
+- **[Updating]({{ '/Updating.html' | relative_url }})** — pulling new versions safely
 
 ---
 

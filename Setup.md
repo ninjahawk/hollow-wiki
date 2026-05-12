@@ -118,4 +118,4 @@ The `thoughts.py` stream shows every goal an agent picks, every tool call, every
 
 ## What's next
 
-See [Operator Panel](Operator-Panel.md) for day-to-day controls. See [Troubleshooting](Troubleshooting.md) if something didn't work.
+See [Operator Panel]({{ '/Operator-Panel.html' | relative_url }}) for day-to-day controls. See [Troubleshooting]({{ '/Troubleshooting.html' | relative_url }}) if something didn't work.

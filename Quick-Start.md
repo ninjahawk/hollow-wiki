@@ -73,4 +73,4 @@ python3 hollow.py         # starts again (skips wizard if config exists)
 - **Adjust suffering manually** — operator panel → per-agent → Suffering load
 - **Submit a task to an agent** — `python3 submit_task.py "your task" --agent scout`
 
-For everything else, see [Setup](Setup.md) and [Troubleshooting](Troubleshooting.md).
+For everything else, see [Setup]({{ '/Setup.html' | relative_url }}) and [Troubleshooting]({{ '/Troubleshooting.html' | relative_url }}).
