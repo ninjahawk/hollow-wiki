@@ -1,0 +1,53 @@
+title: Hollow AgentOS Wiki
+description: Setup, troubleshooting, and concept docs for Hollow AgentOS
+url: "https://ninjahawk.github.io"
+baseurl: "/hollow-wiki"
+
+remote_theme: just-the-docs/just-the-docs
+
+color_scheme: dark
+
+# Search
+search_enabled: true
+search:
+  heading_level: 3
+  previews: 3
+  preview_words_before: 5
+  preview_words_after: 10
+  tokenizer_separator: /[\s/]+/
+  rel_url: true
+  button: false
+
+# Aux nav (top-right)
+aux_links:
+  "Hollow on GitHub":
+    - "https://github.com/ninjahawk/hollow-agentOS"
+  "Releases":
+    - "https://github.com/ninjahawk/hollow-agentOS/releases"
+  "Open an issue":
+    - "https://github.com/ninjahawk/hollow-agentOS/issues/new"
+
+aux_links_new_tab: true
+
+# Footer
+footer_content: 'Hollow AgentOS &middot; <a href="https://github.com/ninjahawk/hollow-agentOS">main repo</a> &middot; <a href="https://github.com/ninjahawk/hollow-wiki">wiki source</a>'
+
+# Edit on GitHub
+gh_edit_link: true
+gh_edit_link_text: "Edit this page on GitHub"
+gh_edit_repository: "https://github.com/ninjahawk/hollow-wiki"
+gh_edit_branch: "main"
+gh_edit_view_mode: "tree"
+
+# Heading anchors
+heading_anchors: true
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+
+# Build
+markdown: kramdown
+kramdown:
+  syntax_highlighter: rouge
+  toc_levels: 2..3
