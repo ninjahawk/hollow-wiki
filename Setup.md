@@ -10,7 +10,13 @@ Three paths depending on your OS. All three end up at the same place: three agen
 
 ## What you need first
 
-- **Disk**: 15-30 GB free (the model is the biggest chunk; qwen3.6 is ~23 GB).
+- **Disk**: depends on which model. Roughly:
+  - `llama3.2:3b` (CPU-only): ~7 GB total
+  - `gemma3:4b`: ~8 GB total
+  - `qwen3.5:9b`: ~11 GB total
+  - `qwen3.6:35b-a3b` (default): ~31 GB total
+
+  Numbers include Docker Desktop (~3-5 GB), Hollow container images (~2-3 GB), and the model itself.
 - **GPU is optional.** A modern NVIDIA card with 24 GB+ VRAM is recommended for the default model. Anything less and the wizard picks a smaller model automatically.
 - **Internet** for the initial install and model download.
 - **Python 3.12+** (the wizard installs it on Windows; verify with `python3 --version` elsewhere).
