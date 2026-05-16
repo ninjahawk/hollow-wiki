@@ -70,11 +70,23 @@ For the panel: `python3 panel.py` (requires `pywebview httpx`: already installed
 ```bash
 git clone https://github.com/ninjahawk/hollow-agentOS
 cd hollow-agentOS
-pip3 install rich pywebview httpx
+pip3 install rich httpx
 python3 hollow.py
 ```
 
-There are two extra Linux-specific things to know:
+**pywebview on Linux requires extra steps.** Unlike Windows and macOS, you need to pick a backend (Qt or GTK) and may need system packages first. See the [pywebview Linux installation guide](https://pywebview.flowrl.com/guide/installation.html) for the full picture. The short version:
+
+```bash
+# Qt backend (works on most distros)
+pip3 install pywebview[qt]
+
+# GTK backend (alternative)
+pip3 install pywebview[gtk]
+```
+
+On some distros (Xfce, minimal installs) you may also need a Qt package and a couple of apt libs. The pywebview guide covers those cases by distro.
+
+There are two other Linux-specific things to know:
 
 ### Docker Desktop file sharing
 
